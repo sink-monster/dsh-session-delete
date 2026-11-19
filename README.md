@@ -17,17 +17,31 @@ right-click on a Session row, or its `…` button, opens.
 
 ## Install
 
-From a local checkout, through the Plugins page (**Add plugin** → the package directory), or
-from git:
+**From the Plugins page (recommended).** Plugins → **Add plugin**, then point it at this
+package: a local checkout directory, or the Git address
 
-```sh
-dsh plugin add github:sink-monster/dsh-session-delete
+```
+github:sink-monster/dsh-session-delete
 ```
 
-After publishing to npm:
+**From a downloaded archive.** Grab the ZIP from the
+[releases page](https://github.com/sink-monster/dsh-session-delete/releases), unpack it, then
+Plugins → **Add plugin** → the unpacked directory.
+
+**From a shell.** The CLI forwards its arguments to pnpm inside the profile directory:
 
 ```sh
-dsh plugin add dsh-session-delete
+dsh plugin --profile desktop add github:sink-monster/dsh-session-delete
+```
+
+`desktop` is the profile name (`web` for `dsh web`, `tui` for the TUI); use whichever profile
+should get the plugin. The command installs the dependency — the profile also keeps an
+explicit bundle list, so confirm the bundle is enabled in Plugins afterwards.
+
+**From an npm release** (once published):
+
+```sh
+dsh plugin --profile desktop add dsh-session-delete
 ```
 
 The bundle inserts one Host row (`session-delete`) and one Web client module. The Host half
@@ -71,9 +85,12 @@ npm test        # host + client behaviour tests and the market-index format chec
 `test/reveal-live.mjs` additionally opens a real file-manager window to prove the handoff;
 run it manually on a desktop session (`node test/reveal-live.mjs`).
 
-`market/index.json` is a format 1 plugin market index entry that lists this bundle for DSH's
-Discover tab; `test/verify-index.mjs` validates it with the validator shipped in DSH (it
-needs a DSH installation, so CI runs the other two suites only).
+`market/index.json` is a format 1 plugin market index entry for this bundle: host it anywhere
+over HTTPS (GitHub Pages works) and add that URL under Plugins → Experimental plugins →
+Custom plugin indexes, and the bundle appears in Discover. Keep `icon.svg` beside it — the
+entry's `icon` resolves against the index URL. `test/verify-index.mjs` validates the file
+with the validator shipped in DSH (it needs a DSH installation, so CI runs the other two
+suites only).
 
 Both behaviour suites run in CI on Node 20 and 22 (`.github/workflows/check.yml`).
 

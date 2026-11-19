@@ -16,16 +16,28 @@
 
 ## 安装
 
-用 Plugins 页的 **添加插件**（选择包目录），或从 Git 安装：
+**在 Plugins 页装（推荐）**：Plugins → **添加插件**，指向这个包 —— 可以是本地目录，也可以是 Git 地址
 
-```sh
-dsh plugin add github:sink-monster/dsh-session-delete
+```
+github:sink-monster/dsh-session-delete
 ```
 
-发布到 npm 之后：
+**从下载的压缩包装**：到[ Releases 页](https://github.com/sink-monster/dsh-session-delete/releases)
+下载 ZIP，解压后 Plugins → **添加插件** → 选解压出来的目录。
+
+**用命令行装**：CLI 会把参数原样转给 profile 目录里的 pnpm
 
 ```sh
-dsh plugin add dsh-session-delete
+dsh plugin --profile desktop add github:sink-monster/dsh-session-delete
+```
+
+`desktop` 是 profile 名（`dsh web` 用 `web`，TUI 用 `tui`），换成你要装的那个。这条命令只负责装依赖，
+profile 里还存着一份显式的 bundle 列表，所以装完请在 Plugins 页确认它已被启用。
+
+**从 npm 装**（发布之后）：
+
+```sh
+dsh plugin --profile desktop add dsh-session-delete
 ```
 
 bundle 会插入一个宿主行（`session-delete`）和一个 Web 客户端模块。宿主半在组合的 connection 信任栅栏后面
@@ -64,8 +76,10 @@ npm test        # 宿主 + 客户端行为测试，以及市场索引格式校�
 `test/reveal-live.mjs` 会真的打开一个文件管理器窗口以确认交接成功，请在桌面会话里手动运行
 （`node test/reveal-live.mjs`）。
 
-`market/index.json` 是格式 1 的插件市场索引条目，用于 DSH 的 Discover 标签页；`test/verify-index.mjs`
-用 DSH 随包的校验器验证它（需要本机装有 DSH，因此 CI 只跑另外两套）。
+`market/index.json` 是本 bundle 的格式 1 市场索引条目：把它托管到任意 HTTPS 地址（GitHub Pages 就行），
+再把该 URL 填到 Plugins → Experimental plugins → Custom plugin indexes，它就会出现在 Discover 里。
+`icon.svg` 要和它放在同一目录（条目里的 `icon` 是相对索引 URL 解析的）。`test/verify-index.mjs` 用
+DSH 随包的校验器验证它（需要本机装有 DSH，因此 CI 只跑另外两套）。
 
 两套行为测试在 CI 里以 Node 20 和 22 运行（`.github/workflows/check.yml`）。
 
