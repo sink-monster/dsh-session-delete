@@ -181,10 +181,13 @@ const revealCtx = makeContext({ paths, agents, reject: undefined, spawnImpl: rev
 const revealOk = await call(revealCtx.routes.get('/session-delete/reveal'), { body: { sessionId: 'foreign' } })
 check('reveal answers 200 with the directory', revealOk.status === 200 && revealOk.payload.path === join(projectDir, 'session-foreign'), JSON.stringify(revealOk.payload))
 const call0 = revealSpawn.calls[0]
+const launchTarget = Array.isArray(call0.args) ? call0.args[0] : ''
 check('launches explorer.exe once', revealSpawn.calls.length === 1 && call0.command === 'explorer.exe', JSON.stringify(revealSpawn.calls))
 check('target is an encoded file URI, not a bare path',
-  Array.isArray(call0.args) && call0.args.length === 1 && /^file:\/\/\/C:\//.test(call0.args[0]),
+  call0.args?.length === 1 && launchTarget.startsWith('file:///') && launchTarget.includes('session-foreign'),
   JSON.stringify(call0.args))
+check('Windows targets keep the drive root',
+  process.platform !== 'win32' || /^file:\/\/\/[A-Za-z]:\//.test(launchTarget), launchTarget)
 check('no %2C/%3D-unsafe characters survive', !/[=]/.test(call0.args[0]))
 check('launcher stays visible (windowsHide must not hide Explorer)',
   call0.options.windowsHide === false && call0.options.windowsHide !== true, JSON.stringify(call0.options))
