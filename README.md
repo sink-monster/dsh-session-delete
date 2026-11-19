@@ -1,5 +1,7 @@
 # dsh-session-delete
 
+English | [中文](README.zh-CN.md)
+
 Adds two rows to every Session context menu in the DeepSeek Harness sidebar — the menu a
 right-click on a Session row, or its `…` button, opens.
 
@@ -69,18 +71,12 @@ npm test        # host + client behaviour tests and the market-index format chec
 `test/reveal-live.mjs` additionally opens a real file-manager window to prove the handoff;
 run it manually on a desktop session (`node test/reveal-live.mjs`).
 
-`market/index.json` is a [format 1 plugin market index](../../) entry that lists this bundle
-for DSH's Discover tab; `test/verify-index.mjs` validates it with the validator shipped in
-DSH (it needs a DSH installation, so CI runs the other two suites only).
+`market/index.json` is a format 1 plugin market index entry that lists this bundle for DSH's
+Discover tab; `test/verify-index.mjs` validates it with the validator shipped in DSH (it
+needs a DSH installation, so CI runs the other two suites only).
 
 Both behaviour suites run in CI on Node 20 and 22 (`.github/workflows/check.yml`).
 
-## 中文说明
-
-在左侧会话列表的右键菜单里增加两项：**打开会话存储路径**（在本机文件管理器中打开该会话自己的日志目录，
-并提示绝对路径）和 **删除会话 → 确认删除（不可恢复）**（删除该会话的磁盘存储目录，侧边栏立即移除该行；
-会话仍在运行时拒绝删除，标签占用日志时会提示先关闭标签）。删除是永久操作，没有回收站。
-
 ## License
 
-MIT.
+Released under the [MIT License](LICENSE).

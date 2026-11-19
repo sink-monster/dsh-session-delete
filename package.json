@@ -37,7 +37,8 @@
     "icon.svg",
     "market",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "README.zh-CN.md"
   ],
   "engines": {
     "dsh": ">=0.2.2-rc.5 <0.3.0"
@@ -47,7 +48,9 @@
     "check": "node --check index.js && node --check client.js"
   },
   "dsh": {
-    "bundle": { "patch": "./cordis.patch.yml" },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
     "client": {
       "platform": "web",
       "immediately": true
