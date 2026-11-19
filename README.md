@@ -71,7 +71,9 @@ run it manually on a desktop session (`node test/reveal-live.mjs`).
 
 `market/index.json` is a [format 1 plugin market index](../../) entry that lists this bundle
 for DSH's Discover tab; `test/verify-index.mjs` validates it with the validator shipped in
-DSH.
+DSH (it needs a DSH installation, so CI runs the other two suites only).
+
+Both behaviour suites run in CI on Node 20 and 22 (`.github/workflows/check.yml`).
 
 ## 中文说明
 
