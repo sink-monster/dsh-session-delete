@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "dsh-session-delete",
+    "description": "Adds “Open session storage location” and “Delete session” to the Session context menu in the sidebar, so a session's own log directory can be opened in the desktop file manager or removed without leaving the app.",
+    "detail": "docs/DETAIL.md"
+  }
+}

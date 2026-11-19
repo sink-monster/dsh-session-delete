@@ -1,0 +1,65 @@
+{
+  "format": 1,
+  "title": {
+    "en": "dsh-session-delete",
+    "zh": "dsh-session-delete"
+  },
+  "description": {
+    "en": "A small plugin index for Session management add-ons.",
+    "zh": "一个用于会话管理类插件的索引。"
+  },
+  "metadata": {
+    "categories": {
+      "session": {
+        "title": {
+          "en": "Session management",
+          "zh": "会话管理"
+        }
+      }
+    },
+    "labels": {},
+    "sortKeys": {}
+  },
+  "plugins": [
+    {
+      "name": "dsh-session-delete",
+      "title": {
+        "en": "dsh-session-delete",
+        "zh": "dsh-session-delete"
+      },
+      "description": {
+        "en": "Open a session's own storage directory in the desktop file manager, or delete the session and its stored files from the sidebar context menu.",
+        "zh": "在侧边栏会话右键菜单中打开该会话自己的存储目录，或删除该会话及其存储文件。"
+      },
+      "icon": "icon.svg",
+      "author": "sink-monster",
+      "homepage": "https://github.com/sink-monster/dsh-session-delete",
+      "repository": {
+        "url": "https://github.com/sink-monster/dsh-session-delete"
+      },
+      "metadata": {
+        "category": "session",
+        "keywords": [
+          "session",
+          "storage",
+          "delete",
+          "context menu"
+        ],
+        "labels": [],
+        "sortKeys": {}
+      },
+      "versions": [
+        {
+          "version": "1.0.1",
+          "publishTimestamp": 1795082992,
+          "source": {
+            "type": "npm"
+          },
+          "engines": {
+            "dsh": ">=0.2.2-rc.5 <0.3.0"
+          }
+        }
+      ]
+    }
+  ]
+}

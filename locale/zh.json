@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "dsh-session-delete",
+    "description": "在侧边栏会话右键菜单中增加“打开会话存储路径”和“删除会话”，直接在本机文件管理器中打开该会话自己的日志目录，或在不离开界面的情况下删除它。",
+    "detail": "docs/DETAIL.md"
+  }
+}

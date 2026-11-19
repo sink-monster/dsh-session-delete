@@ -1,0 +1,15 @@
+# Node
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local test artifacts
+*.log
+market/repositories/
+test/tmp/
